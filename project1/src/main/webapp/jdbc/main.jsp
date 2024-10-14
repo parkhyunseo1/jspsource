@@ -2,36 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
-<% MemberDTO loginDto = (MemberDTO)session.getAttribute("loginDto"); %>
-<h3 class="mt-3">Main</h3>
-<%if(loginDto !=null){ %>
-<div>
-	<%--로그인 한 경우 --%>
-	<%=loginDto.getName() %> 님 반갑습니다. 
-	<a href="" class="btn btn-primary" herf="session_remove.jsp">로그아웃</a>
-	<a href="" class="btn btn-success" herf="">비밀번호변경</a>
-	<a href="" class="btn btn-danger" herf="">탈퇴</a>
 
-</div>
-<%} %>
- <table class="table mt-4">
-  <thead>
-    <tr>
-      <th scope="col">userid</th>
-      <th scope="col">name</th>
-      <th scope="col">age</th>
-      <th scope="col">email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+<h3 class="mt-3">Main</h3>
+
+
+
 
 <%@ include file="footer.jsp"%>
