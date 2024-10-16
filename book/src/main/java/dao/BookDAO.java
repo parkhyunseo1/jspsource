@@ -94,7 +94,7 @@ public class BookDAO {
 	
 	 try {
 		 con = getConnection();
-		 String sql = "SELECT * FROM BOOKTBL";
+		 String sql = "SELECT * FROM BOOKTBL order by code desc";
 		 pstmt = con.prepareStatement(sql);
 		 // sql 구문 ? 해결
 		 rs = pstmt.executeQuery();
