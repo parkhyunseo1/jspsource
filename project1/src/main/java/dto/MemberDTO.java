@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor@AllArgsConstructor@Getter
-@Setter
-@ToString
+
+
+@Getter @Setter @ToString
+@NoArgsConstructor @AllArgsConstructor
 public class MemberDTO {
 	//membertbl 필드랑 일치
 	private String userid;

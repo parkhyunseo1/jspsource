@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter@Setter@ToString
-@NoArgsConstructor@AllArgsConstructor
+@Getter @Setter @ToString
+@NoArgsConstructor @AllArgsConstructor
 public class ChangeDTO {
 	private String userid;
 	private String curentPassword;
-	private String changePassword;
+	private String changePassword;	
 }

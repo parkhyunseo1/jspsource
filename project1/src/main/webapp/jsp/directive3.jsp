@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ include file = "header.jsp" %>
-
-<%--
+<%@ include file="header.jsp"  %>
+<%-- 
 	지시어
-	1)page
-	2)include : 다른 jsp 페이지 포함
-				템플릿 파일 작성
-	 --%>
-	 <form>
+	1) page
+	2) include : 다른 jsp 페이지 포함
+	             템플릿 파일 작성
+ --%>
+<form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -24,4 +23,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-	  <%@ include file = "bottom.jsp" %>
+<%@ include file="bottom.jsp"  %>
