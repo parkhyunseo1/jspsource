@@ -25,7 +25,7 @@
 		</div>
 		<div class="form-group">
 			<label for="password">비밀번호</label> <input type="password"
-				class="form-control" id="password" name="password" required="required">
+				class="form-control" id="password" name="password" >
 		</div>
 		<div class="form-group">
 			<label for="attach">첨부파일</label>
@@ -39,6 +39,7 @@
 		<button type="button" class="btn btn-success">목록</button>
 	</form>
 </div>
+
 <%-- 페이지 나누기 --%>
 <form action="" method="get" id="actionForm">
 	<input type="hidden" name="bno" value="${dto.bno}" />

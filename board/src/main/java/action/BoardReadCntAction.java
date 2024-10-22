@@ -12,7 +12,7 @@ import service.BoardServiceImpl;
 
 
 @AllArgsConstructor
-public class BoardReadAction implements Action {
+public class BoardReadCntAction implements Action {
 	
 	private String path;
 
@@ -20,15 +20,14 @@ public class BoardReadAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		
 		BoardService service = new BoardServiceImpl();
 		
-	
+		//조회수 업데이트
+		service.hitUpdate(bno);
 		
-		BoardDTO dto = service.getRow(bno);
-	
-		request.setAttribute("dto", dto);
-				
-		return new ActionForward(path, false);
+		path+= "?bno="+bno;
+		return new ActionForward(path, true);
 	}
 
 }

@@ -22,4 +22,5 @@ private int re_seq;
 private int readcnt;
 private Date regdate;
 private String password;
+
 }

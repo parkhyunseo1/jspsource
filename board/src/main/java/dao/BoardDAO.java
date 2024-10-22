@@ -60,7 +60,7 @@ public class BoardDAO {
 		try {
 			con = getConnection();
 			//최신글 순으로
-			String sql ="select bno,name,title,readcnt,regdate from board order by bno desc";
+			String sql ="select bno,name,title,readcnt,regdate,re_lev from board ORDER BY RE_REF DESC, RE_SEQ ASC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -71,6 +71,7 @@ public class BoardDAO {
 				dto.setTitle(rs.getString("title"));
 				dto.setReadcnt(rs.getInt("readcnt"));
 				dto.setRegdate(rs.getDate("regdate"));
+				dto.setRe_lev(rs.getInt("re_lev"));
 				
 				list.add(dto);
 			}
@@ -135,5 +136,83 @@ public class BoardDAO {
 		}
 		return updateRow;
 	}	
+	public int delete(BoardDTO deleteDto) {
+		int deleteRow = 0;
+		
+		try {
+				con = getConnection();
+			String sql = "delete FROM BOARD WHERE BNO=? AND PASSWORD=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,  deleteDto.getBno());
+			pstmt.setString(2, deleteDto.getPassword());
+			
+			deleteRow = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con, pstmt);
+		}return deleteRow;
+	}
+	
+	public int insert(BoardDTO insertDto) {
+		int insertRow =0;
+		int bno = 0;
+		try {
+			con = getConnection();
+//			String sql = "SELECT BOARD_SEQ.NEXTVAL FROM DUAL ";
+//			pstmt = con.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				 bno = rs.getInt(1);
+//			}
+//			
+//			 sql = "INSERT INTO BOARD(BNO,NAME,PASSWORD,TITLE,CONTENT,RE_REF,RE_LEV,RE_SEQ) ";
+//			sql += "VALUES(?,?,?,?,?,?,0,0)";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, bno);
+//			pstmt.setString(2, insertDto.getName());
+//			pstmt.setString(3, insertDto.getPassword());
+//			pstmt.setString(4, insertDto.getTitle());
+//			pstmt.setString(5, insertDto.getContent());
+//			pstmt.setInt(6, bno);
+		 String sql = "INSERT INTO BOARD(BNO,NAME,PASSWORD,TITLE,CONTENT,attach,RE_REF,RE_LEV,RE_SEQ) ";
+			sql += "VALUES(board_seq.nextval,?,?,?,?,?,board_seq.currval,0,0)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, insertDto.getName());
+			pstmt.setString(2, insertDto.getPassword());
+			pstmt.setString(3, insertDto.getTitle());
+			pstmt.setString(4, insertDto.getContent());
+			pstmt.setString(5, insertDto.getAttach());
+			
+			insertRow= pstmt.executeUpdate();
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(con, pstmt);
+		}return insertRow;
+	}
+	
+	//조회수 증가
+	public int updateReadCnt(int bno) {
+		int updateRow = 0;
+
+		try {
+
+			con = getConnection();
+			String sql = "UPDATE BOARD SET READCNT = READCNT+1 WHERE BNO = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+
+			updateRow = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, pstmt);
+		}
+		return updateRow;
+	}
 }
+
+
 

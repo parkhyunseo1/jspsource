@@ -20,6 +20,11 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.read(bno);
 	}
+	@Override
+	public boolean delete(BoardDTO deleteDto) {
+		// TODO Auto-generated method stub
+		return dao.delete(deleteDto)==1?true:false;
+	}
 
 	@Override
 	public boolean update(BoardDTO upadteDto) {
@@ -30,7 +35,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean create(BoardDTO insertDto) {
 		// TODO Auto-generated method stub
-		return false;
+		return dao.insert(insertDto)==1?true:false;
+	}
+
+	@Override
+	public boolean hitUpdate(int bno) {
+		// TODO Auto-generated method stub
+		return dao.updateReadCnt(bno)==1?true:false;
 	}
 
 }
