@@ -35,3 +35,44 @@ document.querySelector("tbody").addEventListener("click",(e)=>{
 	
 	//action : /read.do 변경
 });
+
+
+// 검색 기능
+// criteria or keyword 입력이 안된 경우 form submit 중지
+// 적절한 메세지 띄우기
+const searchForm = document.querySelector("#searchForm")
+searchForm.addEventListener("submit",(e)=>{
+	e.preventDefault();
+	
+const select = document.querySelector("#form-select");
+const keyword = document.querySelector("#keyword");
+
+	if(select.value == "n"){
+		alert("검색 조건을 선택하세요");
+		return;
+	}else if(keyword.value ==""){
+		alert("검색어를 입력해주세요");
+		keyword.focus();
+		return;
+	}
+	
+	e.target.submit();
+})
+
+// 하단의 페이지 나누기 기능
+// 1 2 3 숫자 누를 때 actionForm submit
+// href 값 가져와서 actionForm 의 page 요소값으로 대체
+
+ const pagination =document.querySelector(".pagination");
+ console.log(pagination);
+ pagination.addEventListener("click",(e)=>{
+	e.preventDefault();
+	
+	actionForm.querySelector("[name='bno']").remove();
+	actionForm.querySelector("[name='page']").value = e.target.getAttribute("href");
+	actionForm.action ="/list.do";
+	actionForm.submit();
+ })
+
+
+

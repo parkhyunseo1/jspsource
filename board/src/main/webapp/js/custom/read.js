@@ -21,6 +21,16 @@ document.querySelector("#readForm .btn-success").addEventListener("click", () =>
 	actionForm.submit();
 });
 
+// 답변 클릭 시actionForm action = "/replyView.do" 수정 후 submit
+const replyBtn = document.querySelector("#readForm .btn-secondary");
+if (replyBtn) {
+	replyBtn .addEventListener("click", () => {
+		//값이 있다면
+		actionForm.action = "/replyView.do";
+		actionForm.submit();
+	});
+}
+
 
 
 // modify.jsp 수정,삭제,목록 버튼 이벤트
