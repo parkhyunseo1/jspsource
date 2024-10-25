@@ -1,6 +1,7 @@
 package action;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -30,6 +31,12 @@ public class BoardCreateAction implements Action {
 		insertDto.setTitle(request.getParameter("title"));
 		insertDto.setContent(request.getParameter("content"));
 		
+		int page = Integer.parseInt(request.getParameter("page"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		
+		// 검색 추가
+		String criteria = request.getParameter("criteria");
+		String keyword = URLEncoder.encode(request.getParameter("keyword"),"utf-8");
 		// 첨부파일 가져오기(서블릿 기능 이용)
 		Part part = request.getPart("attach");
 		String fileName = getFileName(part);
@@ -55,7 +62,7 @@ public class BoardCreateAction implements Action {
 		
 		if (insertflag) {
 			// 성공 시 bno 보내기(상세조회 시 필요)
-			//
+			path += "?page="+page+"&amount="+amount+"&criteria="+criteria+"&keyword="+keyword;
 		} else {
 			path ="/board/create.jsp";
 		}

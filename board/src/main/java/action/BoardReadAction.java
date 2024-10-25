@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.BoardDTO;
+import dto.SearchDTO;
 import lombok.AllArgsConstructor;
 import service.BoardService;
 import service.BoardServiceImpl;
@@ -20,6 +21,18 @@ public class BoardReadAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		
+		
+		int page = Integer.parseInt(request.getParameter("page"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
+				
+			
+		String criteria = request.getParameter("criteria");
+		String keyword = request.getParameter("keyword");
+				
+		SearchDTO searchDTO = new SearchDTO(criteria,keyword, page, amount);
+						
+		
 		BoardService service = new BoardServiceImpl();
 		
 	
@@ -27,6 +40,7 @@ public class BoardReadAction implements Action {
 		BoardDTO dto = service.getRow(bno);
 	
 		request.setAttribute("dto", dto);
+		request.setAttribute("searchDTO", searchDTO);
 				
 		return new ActionForward(path, false);
 	}
